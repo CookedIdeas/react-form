@@ -20,13 +20,22 @@ function App() {
     postForm(formAnswers);
   };
 
+  // toggle form
+
+  const [foldForm, setFoldForm] = useState(false);
+
+  useEffect(() => {
+    isSuccess && setFoldForm(true);
+  }, [isSuccess]);
+
   // === Form error management === //
 
   const [errorTypesArray, setErrorTypesArray] = useState([]);
 
   const validateForm = () => {
-    if (!errors) return;
+    if (Object.entries(errors).length === 0) return;
     console.log('error presence');
+    console.log(errors);
 
     // transform error object to array
     const errorsAsArray = Object.entries(errors);
@@ -56,8 +65,18 @@ function App() {
       <main className="m-8 grid place-items-center">
         <div className="flex flex-col w-full items-center">
           <h1 className="text-2xl mb-4">Send me your message !</h1>
+          {isSuccess && (
+            <div className="flex flex-col gap-2 items-center">
+              <h2>Your form have been submitted !</h2>
+              <button className="btn" onClick={() => setFoldForm(!foldForm)}>
+                Toggle submitted form
+              </button>
+            </div>
+          )}
           <form
-            className={`w-[90%] sm:w-2/3 md:w-1/2 max-w-xl flex flex-col gap-2 items-center max-h-96`}
+            className={`w-[90%] sm:w-2/3 md:w-1/2 max-w-xl flex flex-col gap-2 items-center overflow-hidden transition-[max-height] duration-500 ${
+              foldForm ? 'max-h-0 ' : 'max-h-[900px]'
+            }`}
             onSubmit={handleSubmit(onSubmit)}
           >
             {/* INPUTS */}

@@ -11,14 +11,14 @@ const FormInput = ({
 }) => {
   if (isTextArea) {
     return (
-      <div className={`form-control w-full ${additionalClass}`}>
+      <div className={`form-control w-[90%] ${additionalClass}`}>
         <label className="label">
           <span className="label-text">{label}</span>
         </label>
         <textarea
           placeholder={placeholder}
           className={`textarea textarea-bordered w-full h-32 ${
-            errors.name?.type === 'required' && 'textarea-warning'
+            errors[name]?.type === 'required' && 'textarea-warning'
           }`}
           {...register}
         />
@@ -27,20 +27,24 @@ const FormInput = ({
   }
 
   return (
-    <div className={`form-control w-full ${additionalClass}`}>
+    <div className={`form-control w-[90%] ${additionalClass}`}>
       <label className="label">
         <span className="label-text">{label}</span>
       </label>
       <input
         type={type}
         placeholder={placeholder}
+        name={name}
         className={`input input-bordered w-full ${
-          errors.name?.type === 'required' && 'input-warning'
-        }
-        ${errors.name?.type === 'pattern' && 'input-error'}`}
+          errors[name]?.type === 'required' && 'input-warning'
+        } ${errors[name]?.type === 'pattern' && 'input-error'}`}
         {...register}
       />
     </div>
   );
 };
 export default FormInput;
+
+//${
+//   errors.name?.type === 'required' && 'input-warning'
+// }
