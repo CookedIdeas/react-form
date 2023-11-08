@@ -1,8 +1,32 @@
-# React + Vite
+# React form
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Project currently in development.
 
-Currently, two official plugins are available:
+<p align="center">
+  <img src="images/screenshot.png" alt="react form" width="75%" height="auto" margin-right="10px">
+</p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+
+To fullfill
+
+## Project
+
+React powered by [Vite](https://vitejs.dev/)
+
+With :
+
+- [TailwindCss](https://tailwindcss.com/) & [DaisyUI](https://daisyui.com/) for styling
+- [@tanstack/react-query](https://tanstack.com/query/v3/)
+- [react-hook-form - useForm](https://react-hook-form.com/)
+
+## Use it !
+
+Download zip or clone repo and...
+
+```bash
+  yarn
+  yarn run dev
+```
+
+Happy coding ;)
