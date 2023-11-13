@@ -37,7 +37,7 @@ function App() {
     postForm(formAnswers);
   };
 
-  // toggle form
+  // === Fold form === //
 
   const [foldForm, setFoldForm] = useState(false);
 
@@ -50,15 +50,13 @@ function App() {
   const [errorTypesArray, setErrorTypesArray] = useState([]);
 
   const validateForm = () => {
+    // if no error, return
     if (Object.entries(errors).length === 0) return;
-    console.log('error presence');
-    console.log(errors);
 
     // transform error object to array
     const errorsAsArray = Object.entries(errors);
 
-    // loop thru errorsAsArray and test error types
-
+    // loop thru errorsAsArray and store error types in errorTypesArray state
     let tempErrorArray = [];
     if (errorsAsArray.length > 0) {
       errorsAsArray.map((singleError) => {
@@ -68,6 +66,8 @@ function App() {
     }
   };
 
+  // check errors types in errorTypesArray state
+  // for each type, trigger a toast
   useEffect(() => {
     // if error type required or pattern → trigger toastify with info
     errorTypesArray.includes('required') &&
