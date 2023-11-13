@@ -1,6 +1,8 @@
 # React form
 
-Project currently in development.
+A responsive form using useForm hook and react-query.
+
+Visit it at [https://cookedideas-react-form.netlify.app/](https://cookedideas-react-form.netlify.app/).
 
 <p align="center">
   <img src="images/screenshot.png" alt="react form" width="75%" height="auto" margin-right="10px">
@@ -8,7 +10,6 @@ Project currently in development.
 
 ## Features
 
-- A responsive form using useform hook
 - Inform user : if there is errors in inputs fulfillment, if submission is successful, if submission is not successful
 - All inputs data from an array
 
