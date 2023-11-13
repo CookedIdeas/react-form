@@ -2,8 +2,6 @@
 
 A responsive form using useForm hook and react-query.
 
-Visit it at [https://cookedideas-react-form.netlify.app/](https://cookedideas-react-form.netlify.app/).
-
 <p align="center">
   <img src="images/screenshot.png" alt="react form" width="75%" height="auto" margin-right="10px">
 </p>
