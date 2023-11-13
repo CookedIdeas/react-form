@@ -5,7 +5,6 @@ import { toast } from 'react-toastify';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 const isTest = import.meta.env.VITE_IS_TEST;
-console.log(isTest);
 
 // if meta.env.VITE_IS_TEST === true → baseUrl is 'api/...'
 // if production → baseUrl is meta.env.VITE_API_URL
@@ -22,8 +21,15 @@ export const usePostForm = () => {
     isError,
   } = useMutation({
     mutationFn: (mailBody) => customFetch.post('/form-submission', mailBody),
-    onSuccess: () => {
+    onSuccess: (response) => {
       toast.success('Form posted !');
+
+      // in development, log received data
+      isTest &&
+        console.log(
+          'data received by server',
+          JSON.parse(response.request.requestBody)
+        );
     },
     onError: (error) => {
       toast.error(error.response.data.msg);

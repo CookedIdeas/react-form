@@ -4,23 +4,8 @@ import FormInput from './components/FormInput';
 import { usePostForm } from './utils';
 import { ToastContainer, toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
-import { createServer } from 'miragejs';
 
 function App() {
-  // === mocking server with miragejs === //
-  // for test purpose, will trigger a response after 1s delay
-
-  createServer({
-    routes() {
-      this.post(
-        '/api/form-submission',
-        () => console.log('post form request received'),
-        {
-          timing: 1000,
-        }
-      );
-    },
-  });
   // === useForm hook === //
 
   const {
