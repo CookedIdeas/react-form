@@ -11,5 +11,10 @@ export const formQuestions = [
     validationPattern: mailRegex,
   },
   { name: 'phone', label: 'Your phone', type: 'tel' },
-  { name: 'message', label: 'Your message', type: 'text', isTextArea: true },
+  {
+    name: 'message',
+    label: 'Your message',
+    type: 'textarea',
+    isTextArea: true,
+  },
 ];

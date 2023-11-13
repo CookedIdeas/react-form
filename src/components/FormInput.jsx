@@ -4,14 +4,13 @@ const FormInput = ({
   name,
   label,
   type,
-  isTextArea,
   placeholder = 'Type here',
-
+  disabled,
   additionalClass = null,
 }) => {
-  if (isTextArea) {
+  if (type === 'textarea') {
     return (
-      <div className={`form-control w-[90%] ${additionalClass}`}>
+      <div className={`form-control ${additionalClass}`}>
         <label className="label">
           <span className="label-text">{label}</span>
         </label>
@@ -21,27 +20,29 @@ const FormInput = ({
             errors[name]?.type === 'required' && 'textarea-warning'
           }`}
           {...register}
+          disabled={disabled}
+        />
+      </div>
+    );
+  } else {
+    return (
+      <div className={`form-control ${additionalClass}`}>
+        <label className="label">
+          <span className="label-text">{label}</span>
+        </label>
+        <input
+          type={type}
+          placeholder={placeholder}
+          name={name}
+          className={`input input-bordered w-full ${
+            errors[name]?.type === 'required' && 'input-warning'
+          } ${errors[name]?.type === 'pattern' && 'input-error'}`}
+          {...register}
+          disabled={disabled}
         />
       </div>
     );
   }
-
-  return (
-    <div className={`form-control w-[90%] ${additionalClass}`}>
-      <label className="label">
-        <span className="label-text">{label}</span>
-      </label>
-      <input
-        type={type}
-        placeholder={placeholder}
-        name={name}
-        className={`input input-bordered w-full ${
-          errors[name]?.type === 'required' && 'input-warning'
-        } ${errors[name]?.type === 'pattern' && 'input-error'}`}
-        {...register}
-      />
-    </div>
-  );
 };
 export default FormInput;
 

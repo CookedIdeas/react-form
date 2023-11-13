@@ -91,45 +91,58 @@ function App() {
             </div>
           )}
           <form
-            className={`w-[90%] sm:w-2/3 md:w-1/2 max-w-xl flex flex-col gap-2 items-center overflow-hidden transition-[max-height] duration-500 ${
+            className={`sm:w-2/3 md:w-1/2 max-w-xl grid lg:grid-cols-2 gap-4 items-center overflow-hidden transition-[max-height] duration-500 ${
               foldForm ? 'max-h-0 ' : 'max-h-[900px]'
             }`}
             onSubmit={handleSubmit(onSubmit)}
           >
             {/* INPUTS */}
             {formQuestions.map((question) => (
-              <FormInput
+              // input textarea → full width → lg:col-span-2
+              <div
                 key={question.name}
-                {...question}
-                register={{
-                  ...register(question.name, {
-                    required: true,
-                    pattern: question.validationPattern,
-                  }),
-                }}
-                errors={errors}
-              />
+                className={`px-2 ${
+                  question.type === 'textarea'
+                    ? 'lg:col-span-2'
+                    : 'lg:col-span-1'
+                } `}
+              >
+                <FormInput
+                  {...question}
+                  register={{
+                    ...register(question.name, {
+                      required: true,
+                      pattern: question.validationPattern,
+                    }),
+                  }}
+                  errors={errors}
+                  //  disable form if already successfully submitted
+                  disabled={isSuccess}
+                />
+              </div>
             ))}
 
             {/* SUBMIT BUTTON */}
-            <button
-              className="btn btn-primary w-48 mt-4"
-              type="submit"
-              disabled={isSuccess}
-              onClick={validateForm}
-            >
-              {/* DEFAULT */}
-              {!isLoading && !isSuccess && !isError && 'Submit'}
-              {/* POST STATE DEPENDANT CONTENT */}
-              {isLoading && (
-                <>
-                  <span className="loading loading-dots loading-xs"></span>
-                  Sending...
-                </>
-              )}
-              {isSuccess && 'Form submitted !'}
-              {isError && 'Retry ?'}
-            </button>
+            <div className="lg:col-span-2 grid self-center place-items-center">
+              <button
+                className="btn btn-primary w-48 mt-4"
+                type="submit"
+                disabled={isSuccess}
+                onClick={validateForm}
+              >
+                {/* DEFAULT */}
+                {!isLoading && !isSuccess && !isError && 'Submit'}
+                {/* POST STATE DEPENDANT CONTENT */}
+                {isLoading && (
+                  <>
+                    <span className="loading loading-dots loading-xs"></span>
+                    Sending...
+                  </>
+                )}
+                {isSuccess && 'Form already submitted !'}
+                {isError && 'Retry ?'}
+              </button>
+            </div>
           </form>
         </div>
       </main>
